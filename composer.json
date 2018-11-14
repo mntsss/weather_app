@@ -8,10 +8,12 @@
         "sensio/framework-extra-bundle": "^5.2",
         "symfony/asset": "*",
         "symfony/console": "*",
+        "symfony/dependency-injection": "*",
         "symfony/dotenv": "*",
         "symfony/flex": "^1.1",
         "symfony/framework-bundle": "*",
         "symfony/twig-bundle": "*",
+        "symfony/validator": "*",
         "symfony/var-dumper": "*",
         "symfony/webpack-encore-pack": "^1.0",
         "symfony/yaml": "*"
