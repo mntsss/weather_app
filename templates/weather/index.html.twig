@@ -4,7 +4,7 @@
 {% block title %}Weather !{% endblock %}
 
 {% block body %}
-
+    {% include 'errors.html.twig' %}
     {% if  app.request.get('day') is not empty %}
         Parametras {{ app.request.get('day') }}
     {% endif %}

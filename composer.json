@@ -12,6 +12,7 @@
         "symfony/dotenv": "*",
         "symfony/flex": "^1.1",
         "symfony/framework-bundle": "*",
+        "symfony/profiler-pack": "^1.0",
         "symfony/twig-bundle": "*",
         "symfony/validator": "*",
         "symfony/var-dumper": "*",

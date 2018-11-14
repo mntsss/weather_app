@@ -9,13 +9,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class WeatherController extends AbstractController
 {
-    public function index($day)
+    public function index($day, ValidationService $validationService)
     {
-        $validationService = new ValidationService;
-
         $violations = $validationService->validateDate($day);
-        dump($violations);
+
         try {
+            if($violations->count() > 0)
+                throw new \Exception("Incorrect data format!");
             $fromGoogle = new WeatherService();
             $weather = $fromGoogle->getDay(new \DateTime($day));
         } catch (\Exception $exp) {
@@ -29,6 +29,7 @@ class WeatherController extends AbstractController
                 'nightTemp' => $weather->getNightTemp(),
                 'sky'       => $weather->getSky()
             ],
+            'errors'    => $violations
         ]);
     }
 }
