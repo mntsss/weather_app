@@ -35,10 +35,8 @@ class LoaderService
         $cacheKey = $this->getCacheKey($day);
 
         if ($this->cacheService->has($cacheKey)) {
-            echo 'from cache  ';
             $weather = $this->cacheService->get($cacheKey);
         } else {
-            echo 'save to cache   ';
             $weather = $this->weatherService->getDay($day);
             $this->cacheService->set($cacheKey, $weather);
         }
