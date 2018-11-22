@@ -32,6 +32,26 @@ class LoaderService
      */
     public function loadWeatherByDay(\DateTime $day): Weather
     {
-        return $this->weatherService->getDay($day);
+        $cacheKey = $this->getCacheKey($day);
+
+        if ($this->cacheService->has($cacheKey)) {
+            echo 'from cache  ';
+            $weather = $this->cacheService->get($cacheKey);
+        } else {
+            echo 'save to cache   ';
+            $weather = $this->weatherService->getDay($day);
+            $this->cacheService->set($cacheKey, $weather);
+        }
+
+        return $weather;
+    }
+
+    /**
+     * @param \DateTime $day
+     * @return string
+     */
+    private function getCacheKey(\DateTime $day): string
+    {
+        return $day->format('Y-m-d');
     }
 }
