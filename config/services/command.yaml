@@ -1,0 +1,20 @@
+parameters:
+
+services:
+    app.command.service.adult_check_service:
+        class: App\Command\Service\AdultCheckService
+
+    app.command.service.age_service:
+        class: App\Command\Service\AgeService
+
+    app.command.service.manager_service:
+        class: App\Command\Service\ManagerService
+        arguments:
+            - '@app.command.service.age_service'
+            - '@app.command.service.adult_check_service'
+
+    app.command.age_calculator_command:
+        class: App\Command\AgeCalculatorCommand
+        public: true
+        bind:
+            $managerService: '@app.command.service.manager_service'
